@@ -3,15 +3,20 @@ title: Tractum
 description: A coordination layer built around signed, verifiable agreement across Claude agents.
 ---
 
-# Tractum
-
-**Verifiable multi-agent consensus for Claude.** A coordination layer built
-around signed, verifiable agreement.
-
-Every agent framework can make one Claude answer. Most can run several in
-parallel. **None of them ship a signed consensus receipt — agreement with
-the disagreement surfaced and the result cryptographically verifiable.**
-That's Tractum.
+<div class="docs-hero">
+  <p class="docs-eyebrow">// DOCUMENTATION</p>
+  <h1 class="docs-wordmark">Tractum<span class="dot">.</span></h1>
+  <p class="docs-lede">
+    <strong>Verifiable multi-agent consensus for Claude.</strong> A coordination
+    layer built around signed, verifiable agreement.
+  </p>
+  <p class="docs-lede">
+    Every agent framework can make one Claude answer. Most can run several in
+    parallel. None of them ship a signed consensus receipt — agreement with the
+    disagreement surfaced and the result cryptographically verifiable.
+    <strong>That's Tractum.</strong>
+  </p>
+</div>
 
 > Buzz coordinates agents via workflows. Goose gave one agent tools.
 > LangGraph makes you wire coordination by hand. **Tractum adds what none

@@ -227,11 +227,11 @@ body,
   color: var(--tractum-text);
 }
 .md-header__title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
 }
 .md-header__topic:first-child {
   font-weight: 600;
@@ -547,4 +547,61 @@ body,
   .md-typeset .highlight {
     overflow-x: hidden;
   }
+}
+
+/* ---- Docs hero (index.md) — tractum.dev wordmark language -------------- */
+.md-typeset .docs-hero {
+  margin: 0 0 2.5rem;
+  padding: 1.5rem 0 2.25rem;
+  border-bottom: 1px solid var(--tractum-border);
+}
+.md-typeset .docs-hero .docs-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tractum-primary);
+  margin: 0 0 0.75rem;
+}
+.md-typeset .docs-hero h1.docs-wordmark {
+  font-size: clamp(2.75rem, 6vw, 4.25rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  text-transform: uppercase;
+  margin: 0 0 1.25rem;
+}
+.md-typeset .docs-hero .docs-wordmark .dot {
+  color: var(--tractum-primary);
+}
+.md-typeset .docs-hero .docs-lede {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--tractum-muted);
+  max-width: 48ch;
+  margin: 0 0 0.75rem;
+}
+.md-typeset .docs-hero .docs-lede strong {
+  color: var(--tractum-text);
+  font-weight: 600;
+}
+
+/* ---- Announcement banner ------------------------------------------------ */
+.md-banner {
+  background: var(--tractum-bg);
+  border-bottom: 1px solid var(--tractum-border);
+  color: var(--tractum-muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+}
+.md-banner a,
+.md-banner a:focus,
+.md-banner a:hover {
+  color: var(--tractum-muted);
+}
+.md-banner a strong {
+  color: var(--tractum-primary);
+  font-weight: 500;
 }
