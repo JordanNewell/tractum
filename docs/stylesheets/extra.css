@@ -24,7 +24,7 @@
 [data-md-color-scheme="slate"],
 [data-md-color-scheme="tractum"] {
   --md-default-bg-color:             var(--tractum-bg);
-  --md-default-fg-color:             --tractum-text;
+  --md-default-fg-color:             var(--tractum-text);
   --md-default-fg-color--light:      var(--tractum-muted);
   --md-default-fg-color--lighter:    var(--tractum-muted);
   --md-default-fg-color--lightest:   var(--tractum-border);
@@ -535,4 +535,16 @@ body,
 }
 .md-typeset .receipt-chip .hash {
   color: var(--tractum-accent);
+}
+
+/* ---- Phone: wrap code instead of sideways scroll (tractum.dev parity) -- */
+@media (max-width: 480px) {
+  .md-typeset pre > code,
+  .md-typeset .highlight pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .md-typeset .highlight {
+    overflow-x: hidden;
+  }
 }
