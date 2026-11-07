@@ -9,7 +9,7 @@
 # dependency tree, all of it runtime-needed), and a single stage keeps the
 # image rebuildable on a reviewer's laptop in one pass.
 
-FROM python:3.13-slim
+FROM python:3.15-slim
 
 # Compiler toolchain + ca certs: cryptography, coincurve, and several
 # transitive deps of crewai/litellm build wheels at install time on slim
