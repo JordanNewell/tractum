@@ -1,11 +1,9 @@
 """
 MCP server tool behavior: the signing-key policy (pinned vs ephemeral), the
 require-pinned guard, dry-run mode, and per-agent pubkey pinning on
-verify_consensus. Tool paths run through the real FastMCP server (requires
+verify_consensus. Tool paths run through the real MCPServer server (requires
 the [mcp] extra); the pure dry-run helper is tested everywhere.
 """
-
-import json
 
 import pytest
 
@@ -40,11 +38,9 @@ def _server():
 
 
 async def _call(server, name: str, args: dict) -> dict:
-    content, structured = await server.call_tool(name, args)
-    if not isinstance(structured, dict):
-        # Older mcp versions return raw content blocks instead of (blocks, dict).
-        structured = json.loads(content[0].text)
-    return structured
+    result = await server.call_tool(name, args)
+    assert isinstance(result.structured_content, dict)
+    return result.structured_content
 
 
 # --- dry-run stub consensus (no mcp needed) ----------------------------------
@@ -110,9 +106,9 @@ async def test_reach_consensus_uses_pinned_key_when_set(monkeypatch):
 
 @pytest.mark.asyncio
 async def test_require_pinned_key_fails_loudly_when_key_is_unset(monkeypatch):
-    # FastMCP surfaces tool exceptions as ToolError to the client — that IS
+    # MCPServer surfaces tool exceptions as ToolError to the client — that IS
     # the loud failure; the message carries the fix.
-    from mcp.server.fastmcp.exceptions import ToolError
+    from mcp.server.mcpserver.exceptions import ToolError
 
     monkeypatch.delenv(SIGNING_KEY_ENV, raising=False)
     monkeypatch.setenv(REQUIRE_PINNED_KEY_ENV, "1")

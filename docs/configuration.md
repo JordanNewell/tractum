@@ -255,7 +255,7 @@ Base install pulls: `anthropic>=0.40.0`, `cryptography>=42.0.0`, `httpx>=0.26.0`
 
 | Extra | Pulls | Use when |
 |---|---|---|
-| `mcp` | `mcp>=1.0.0` | Running `tractum-mcp`. |
+| `mcp` | `mcp>=2.0.0` | Running `tractum-mcp`. |
 | `nostr` | `coincurve>=20.0.0` | Signing/publishing Nostr events (Buzz interop). Prebuilt wheels for CPython 3.11–3.13. |
 | `pq` | `dilithium-py>=1.4.0` | Post-quantum ML-DSA-65 signatures. |
 | `langgraph` | `langgraph>=0.2.0`, `langchain-core>=0.3.0` | LangGraph adapter. |

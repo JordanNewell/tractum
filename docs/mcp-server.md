@@ -23,7 +23,7 @@ framework can call.
 pip install tractum[mcp]
 ```
 
-Pulls `mcp>=1.0` and a small server runtime. The import is lazy — without
+Pulls `mcp>=2.0` and a small server runtime. The import is lazy — without
 the extra, `import tractum` never touches MCP.
 
 ## Run

@@ -198,7 +198,7 @@ async def _verify_via_mcp_or_direct(
 ) -> dict[str, Any]:
     """Run the server's verify_consensus tool, or its direct equivalent.
 
-    With `mcp` installed this drives the real FastMCP tool (the exact one
+    With `mcp` installed this drives the real MCPServer tool (the exact one
     `tractum-mcp` exposes), including operator-key pinning. Without it,
     the same verify_receipt_detailed call runs inline.
     """
@@ -232,17 +232,13 @@ async def _verify_via_mcp_or_direct(
             ],
         }
 
-    content, structured = await server.call_tool("verify_consensus", {
+    result = await server.call_tool("verify_consensus", {
         "receipt": wire,
         "expected_operator_pubkey": operator_pub,
     })
     print("(verified through the tractum MCP server's verify_consensus tool)")
-    if not isinstance(structured, dict):
-        # Older mcp versions return raw content blocks instead of (blocks, dict).
-        import json
-
-        structured = json.loads(content[0].text)
-    return structured
+    assert isinstance(result.structured_content, dict)
+    return result.structured_content
 
 
 if __name__ == "__main__":
