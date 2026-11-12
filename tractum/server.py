@@ -11,7 +11,7 @@ Run:
     tractum-mcp            # stdio transport (Claude Code, Cursor)
     tractum-mcp --http     # HTTP/SSE transport (remote agents)
 
-The server is transport-agnostic; FastMCP picks the transport from how it's
+The server is transport-agnostic; MCPServer picks the transport from how it's
 invoked. Tools are async and reuse the tractum core directly.
 
 Signing keys:
@@ -65,10 +65,11 @@ def _env_flag(name: str) -> bool:
 
 
 def _build_server() -> Any:
-    """Construct the FastMCP server. Imported lazily so [mcp] extra stays optional."""
-    from mcp.server.fastmcp import FastMCP
+    """Construct the MCPServer. Imported lazily so [mcp] extra stays optional."""
+    from mcp.server.mcpserver import MCPServer
+    from mcp.server.mcpserver.exceptions import ToolError
 
-    mcp = FastMCP(
+    mcp = MCPServer(
         name="tractum",
         instructions=(
             "Tractum gives you verifiable multi-agent consensus. Use "
@@ -150,7 +151,7 @@ def _build_server() -> Any:
         )
         backend = Ed25519Backend()
         if _env_flag(REQUIRE_PINNED_KEY_ENV) and not os.getenv(SIGNING_KEY_ENV):
-            raise ValueError(
+            raise ToolError(
                 f"{REQUIRE_PINNED_KEY_ENV} is set but {SIGNING_KEY_ENV} is not. "
                 f"Set {SIGNING_KEY_ENV} to a hex Ed25519 private key, or unset "
                 f"{REQUIRE_PINNED_KEY_ENV} to allow ephemeral per-receipt keys."
