@@ -232,7 +232,7 @@ questions.
   manipulation. Documented in `docs/THREAT-MODEL.md`.
 - **Threat model** (`docs/THREAT-MODEL.md`): explicit attacker assumptions,
   what the signatures defend against, what they don't.
-- **Docs site** (jordannewell.github.io/claudeway): mkdocs-material +
+- **Docs site** (leverframe.github.io/tractum): mkdocs-material +
   mkdocstrings API reference. Auto-builds on push to `main` via the
   `docs.yml` workflow.
 - **Community policies**: `SECURITY.md` (private vuln disclosure + SLA),
