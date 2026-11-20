@@ -301,13 +301,13 @@ questions.
   runner scaffolding, port management). Superseded by the 0.2.0 rewrite
   around the SDK + consensus wedge. The dashboard and multi-tenant runner
   are deferred — see
-  [`docs/DEPRECATION.md`](https://github.com/JordanNewell/claudeway/blob/main/docs/DEPRECATION.md).
+  [`docs/DEPRECATION.md`](https://github.com/leverframe/tractum/blob/main/docs/DEPRECATION.md).
 
-[Unreleased]: https://github.com/JordanNewell/claudeway/compare/v0.4.0...HEAD
-[0.5.0]: https://github.com/JordanNewell/claudeway/releases/tag/v0.5.0
-[0.4.0]: https://github.com/JordanNewell/claudeway/releases/tag/v0.4.0
-[0.3.2]: https://github.com/JordanNewell/claudeway/releases/tag/v0.3.2
-[0.3.1]: https://github.com/JordanNewell/claudeway/releases/tag/v0.3.1
-[0.3.0]: https://github.com/JordanNewell/claudeway/releases/tag/v0.3.0
-[0.2.0]: https://github.com/JordanNewell/claudeway/releases/tag/v0.2.0
-[0.1.0]: https://github.com/JordanNewell/claudeway/releases/tag/v0.1.0
+[Unreleased]: https://github.com/leverframe/tractum/compare/v0.4.0...HEAD
+[0.5.0]: https://github.com/leverframe/tractum/releases/tag/v0.5.0
+[0.4.0]: https://github.com/leverframe/tractum/releases/tag/v0.4.0
+[0.3.2]: https://github.com/leverframe/tractum/releases/tag/v0.3.2
+[0.3.1]: https://github.com/leverframe/tractum/releases/tag/v0.3.1
+[0.3.0]: https://github.com/leverframe/tractum/releases/tag/v0.3.0
+[0.2.0]: https://github.com/leverframe/tractum/releases/tag/v0.2.0
+[0.1.0]: https://github.com/leverframe/tractum/releases/tag/v0.1.0
