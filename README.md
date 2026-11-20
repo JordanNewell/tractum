@@ -1,21 +1,23 @@
 <p align="center">
-  <img src="assets/og/tractum-og.png" alt="Tractum — verifiable multi-agent consensus for Claude" width="100%" />
+  <a href="https://tractum.dev"><img src="assets/tractum-lockup.svg" alt="Tractum" width="520" /></a>
 </p>
 
-# Tractum
+<p align="center">
+  <strong>Multi-agent consensus with cryptographic receipts.</strong><br>
+  <em>Frameworks coordinate. Tractum agrees.</em>
+</p>
 
-**Multi-agent consensus with cryptographic receipts.** Three agents debate, **each signs its own stance**, and the result ships as a k-of-n signed receipt anyone can verify — forever.
-
-Every agent framework can make one agent answer. Most can run several in parallel. **None of them produce per-agent signed, quorum-verifiable artifacts you can hand to an auditor, a regulator, or a future teammate.** That's Tractum.
-
-> Frameworks coordinate. Tractum agrees.
-
-[![CI](https://github.com/leverframe/tractum/actions/workflows/ci.yml/badge.svg)](https://github.com/leverframe/tractum/actions/workflows/ci.yml)
-[![Docs](https://github.com/leverframe/tractum/actions/workflows/docs.yml/badge.svg)](https://leverframe.github.io/tractum/)
-[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
-[![License: BUSL-1.1](https://img.shields.io/badge/license-BUSL--1.1-green.svg)](#license)
+<p align="center">
+  <a href="https://github.com/leverframe/tractum/actions/workflows/ci.yml"><img src="https://github.com/leverframe/tractum/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/leverframe/tractum/actions/workflows/docs.yml"><img src="https://github.com/leverframe/tractum/actions/workflows/docs.yml/badge.svg" alt="Docs"></a>
+  <a href="https://pypi.org/project/tractum/"><img src="https://img.shields.io/pypi/v/tractum?color=FFB000&label=PyPI" alt="PyPI"></a>
+  <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.11%2B-blue.svg" alt="Python 3.11+"></a>
+  <a href="#license"><img src="https://img.shields.io/badge/license-BUSL--1.1-green.svg" alt="License: BUSL-1.1"></a>
+</p>
 
 ---
+
+Three agents debate, **each signs its own stance**, and the result ships as a k-of-n signed receipt anyone can verify — forever. Every agent framework can make one agent answer. Most can run several in parallel. **None of them produce per-agent signed, quorum-verifiable artifacts you can hand to an auditor, a regulator, or a future teammate.** That's Tractum.
 
 ## The receipt on the wire
 
@@ -33,8 +35,6 @@ nak verify < tractum-event.json && echo "sig valid"
 ```
 
 That's a Tractum receipt, verifiable forever — on the same Nostr wire Buzz, Damus, Snort, and Primal speak.
-
----
 
 ## The 30-second pitch
 
@@ -61,6 +61,55 @@ print(f"agreement: {result.result['agreement']:.0%}  disagreed: {result.result['
 ```
 
 Three specialists. One signed answer. Disagreement **surfaced, not averaged away.**
+
+## Install
+
+```bash
+pip install tractum              # the SDK (4 deps, lean)
+pip install tractum[mcp]         # + expose consensus as an MCP server
+pip install tractum[nostr]       # + sign Nostr events for Buzz interop
+pip install tractum[pq]          # + ML-DSA-65 post-quantum signature backend
+pip install tractum[langgraph]   # + LangGraph StateGraph adapter
+pip install tractum[maf]         # + Microsoft Agent Framework adapter
+pip install tractum[crewai]      # + CrewAI @tool + Flow adapter
+pip install tractum[docs]        # + build the docs site locally
+```
+
+## Use it three ways
+
+### 1. As a Python SDK
+
+```python
+from tractum import Swarm, WeightedVote, Debate
+
+# Cheap default — one round, picks highest-confidence answer
+swarm = Swarm(config, consensus=WeightedVote())
+
+# For hard questions — agents see peers' answers and revise once
+swarm = Swarm(config, consensus=Debate())
+```
+
+### 2. As an MCP server (any agent can call consensus)
+
+```bash
+tractum-mcp            # stdio — for Claude Code, Cursor
+tractum-mcp --http     # HTTP/SSE — for remote agents
+```
+
+Now any MCP-capable agent (Claude Code, Cursor, Goose) gains two tools: `reach_consensus` and `verify_consensus`. One tool call gets a signed agreement — no framework to learn, no graphs to wire. **Try it in 5 minutes:** [docs/mcp-demo.md](docs/mcp-demo.md).
+
+### 3. As a coordinator (hierarchical decomposition)
+
+```python
+from tractum import Coordinator, CoordinatorConfig
+
+coord = Coordinator(CoordinatorConfig())
+coord.add_sub_agent("Researcher", ...)
+coord.add_sub_agent("Analyst", ...)
+result = await coord.coordinate(task)
+# The coordinator's plan is parsed for real, specialists run in dependency
+# order (parallel where independent), results synthesized.
+```
 
 ## Why this exists
 
@@ -128,60 +177,6 @@ event = to_nostr_event(receipt, private_key_hex=nostr_key, d_tag="room-42")
 
 The event Tractum produces verifies clean under [`nak`](https://github.com/fiatjaf/nak) (the reference Nostr CLI) and round-trips through `nak serve` — publish, subscribe, read back, receipt signature still verifies. See [`TESTLOG.md`](TESTLOG.md) for the four-layer evidence trail (BIP-340 KAT, 164-test suite, `nak verify`, end-to-end demo), [`examples/buzz_consensus_demo.py`](examples/buzz_consensus_demo.py) for the offline showcase, and [`examples/buzz_wire_publish.py`](examples/buzz_wire_publish.py) for the script that produced the **[live published v0.3.0 event](https://nostr.mom/e/3974ebfe688f1639a8534b46bbbfeddf354d18efcd190352da877756d1bac60b)** on five public relays.
 
-## Install
-
-```bash
-pip install tractum              # the SDK (4 deps, lean)
-pip install tractum[mcp]         # + expose consensus as an MCP server
-pip install tractum[nostr]       # + sign Nostr events for Buzz interop
-pip install tractum[pq]          # + ML-DSA-65 post-quantum signature backend
-pip install tractum[langgraph]   # + LangGraph StateGraph adapter
-pip install tractum[maf]         # + Microsoft Agent Framework adapter
-pip install tractum[crewai]      # + CrewAI @tool + Flow adapter
-pip install tractum[docs]        # + build the docs site locally
-```
-
-> **Launch note:** the PyPI package `tractum` is being published alongside
-> this release. Until it lands, install from the repo:
-> `pip install git+https://github.com/leverframe/tractum.git#egg=tractum[mcp]`.
-> (v0.4.x and earlier shipped to GitHub only, as `claudeway`.)
-
-## Use it three ways
-
-### 1. As a Python SDK
-
-```python
-from tractum import Swarm, WeightedVote, Debate
-
-# Cheap default — one round, picks highest-confidence answer
-swarm = Swarm(config, consensus=WeightedVote())
-
-# For hard questions — agents see peers' answers and revise once
-swarm = Swarm(config, consensus=Debate())
-```
-
-### 2. As an MCP server (any agent can call consensus)
-
-```bash
-tractum-mcp            # stdio — for Claude Code, Cursor
-tractum-mcp --http     # HTTP/SSE — for remote agents
-```
-
-Now any MCP-capable agent (Claude Code, Cursor, Goose) gains two tools: `reach_consensus` and `verify_consensus`. One tool call gets a signed agreement — no framework to learn, no graphs to wire. **Try it in 5 minutes:** [docs/mcp-demo.md](docs/mcp-demo.md).
-
-### 3. As a coordinator (hierarchical decomposition)
-
-```python
-from tractum import Coordinator, CoordinatorConfig
-
-coord = Coordinator(CoordinatorConfig())
-coord.add_sub_agent("Researcher", ...)
-coord.add_sub_agent("Analyst", ...)
-result = await coord.coordinate(task)
-# The coordinator's plan is parsed for real, specialists run in dependency
-# order (parallel where independent), results synthesized.
-```
-
 ## Examples
 
 - [`examples/quickstart.py`](examples/quickstart.py) — 15 lines, 3 agents → signed receipt
@@ -194,26 +189,13 @@ result = await coord.coordinate(task)
 - [`examples/transparency_demo.py`](examples/transparency_demo.py) — append-only transparency log anchored to Nostr
 - [`examples/killer_demo.py`](examples/killer_demo.py) — the blind-judge benchmark (Tractum vs CrewAI vs single Claude); reproducible via the Docker compose appliance
 
-## Repository layout
-
-```
-tractum/          # the SDK package (wheel contents) — swarm, consensus, signing, transports, server (MCP), adapters
-api/                # FastAPI runner/control plane (platform features deprecated; see docs/DEPRECATION.md)
-dashboard/          # Next.js dashboard frontend for the runner
-tests/              # pytest suite (consensus, coordinator, signing, nostr, adversarial, adapters)
-examples/           # runnable demos (above)
-benchmarks/         # benchmark Dockerfile + run.sh
-docs/               # mkdocs sources (ARCHITECTURE, CHANGELOG, DEPRECATION, ...)
-scripts/ infra/     # supporting tooling
-```
-
 ## Features
 
 - **Real consensus** — `WeightedVote` (cheap, default) and `Debate` (revision round when agents disagree, early-exits when they already agree)
 - **Real decomposition** — JSON plan parsing, dependency-respecting parallel execution, specialist routing
 - **Concurrent** — N-agent swarms issue all Claude calls in parallel, not serially
 - **Verifiable** — every result is a signed, tamper-evident receipt; every agent's stance is individually signed and quorum-countable
-- **MCP-native** — ships as an MCP server for the 10K+ server / 8M-downloads/month ecosystem
+- **MCP-native** — ships as an MCP server (mcp 2.x) for the 10K+ server / 8M-downloads/month ecosystem
 - **Claude-native** — built on the Anthropic SDK, prompt-caching-friendly
 - **Lean** — 4 base dependencies
 
@@ -243,33 +225,9 @@ scripts/ infra/     # supporting tooling
 
 See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the full design.
 
-## Roadmap
+## Status & roadmap
 
-**Shipped (v0.2.0):**
-- SDK (Swarm, Coordinator, Agent) with real concurrent execution
-- WeightedVote + Debate consensus strategies with cost-guarded early-exit
-- Signed receipts with the swappable `SignatureBackend` ABC and an **Ed25519** default backend
-- Three transports: JSON receipt, W3C Verifiable Credential, Nostr NIP-78 event
-- MCP server (`tractum-mcp`) exposing `reach_consensus` + `verify_consensus`
-- **Buzz adapter** — verifiable end-to-end against `nak serve`
-
-**Shipped (v0.3.0):**
-- **Post-quantum signature backend** — **ML-DSA-65** (FIPS 204), pure-Python via `dilithium-py`. Same receipt, same canonical hash; swap in at the `SignatureBackend` ABC.
-- **LangGraph adapter** — Tractum consensus as a single `StateGraph` node
-- **Microsoft Agent Framework adapter** — Tractum as a workflow + agent in MAF (AutoGen + Semantic Kernel successor)
-- **CrewAI adapter** — Tractum as a `@tool` and Flow; inverts the killer demo so a CrewAI crew can *call* Tractum for agreement
-- **Consensus transparency log** — RFC 6962-style append-only log, anchored to Nostr on a cadence
-- **Streaming consensus events** — `OnEvent` callback surfaces `AgentCompleted` and `ConsensusResolved` events as they happen
-- **Killer benchmark** — Tractum beats single Claude (+7/20) and CrewAI (+5/20) on a hard question, blind-judge scored, Mann-Whitney U
-- **Adversarial security suite** — 20 tests across 7 attack classes + published threat model
-- **Docs site** — leverframe.github.io/tractum (mkdocs-material + mkdocstrings)
-- Tolerant structured-output parser, substantive `<answer>` contract
-- Stable signing key across adapter runs, async→sync bridge deadlock fix
-
-**Shipped (v0.4.0):**
-- **Per-agent signed statements + k-of-n quorum receipts** — each agent signs its own stance; receipts carry every agent's individual signature plus a signed quorum threshold, upgradeable from "operator's claim" to "countable multi-sig"
-- **`verify_receipt_detailed`** — full verification report: aggregate signature, per-statement signatures, statement/response cross-checks, operator + per-agent key pinning, quorum count
-- **MCP `verify_consensus` upgrade** — the tool now returns the full statement-by-statement verdict
+Current release: **v0.6.0** ([PyPI](https://pypi.org/project/tractum/) · [changelog](docs/CHANGELOG.md)). Shipped to date: the SDK (Swarm, Coordinator, Agent) with concurrent execution; WeightedVote + Debate consensus; per-agent signed statements and k-of-n quorum receipts; Ed25519 + ML-DSA-65 signing backends; JSON / W3C VC / Nostr NIP-78 transports; the MCP server on mcp 2.x; LangGraph, MAF, CrewAI, and Buzz adapters; the transparency log; and the blind-judge benchmark (Tractum +7/20 vs single Claude, +5/20 vs CrewAI). Full version history in the [changelog](docs/CHANGELOG.md).
 
 **Next:**
 - A2A (Agent-to-Agent) protocol adapter — verifiable consensus for Google's agent protocol
@@ -289,8 +247,7 @@ Full documentation at **[leverframe.github.io/tractum](https://leverframe.github
 - [API reference](https://leverframe.github.io/tractum/api-reference/) — auto-generated from the source
 - [Changelog](https://leverframe.github.io/tractum/CHANGELOG/)
 
-The docs site deploys automatically on push to `main` via the
-[`docs.yml`](.github/workflows/docs.yml) workflow. Build locally:
+The docs site deploys automatically on push to `main` via the [`docs.yml`](.github/workflows/docs.yml) workflow. Build locally:
 
 ```bash
 pip install -e ".[docs]"

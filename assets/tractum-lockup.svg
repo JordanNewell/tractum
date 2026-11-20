@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1285 240" width="1285" height="240" role="img" aria-label="Tractum">
+<title>Tractum</title>
+<rect width="1285" height="240" fill="#0A0A0A"/>
+<g transform="translate(0,45.6) scale(0.62)">
+<rect x="24" y="84" width="24" height="108" rx="12" fill="#3D3D3D"/>
+<rect x="72" y="24" width="24" height="168" rx="12" fill="#FFB000"/>
+<rect x="120" y="24" width="24" height="168" rx="12" fill="#FFB000"/>
+<rect x="168" y="24" width="24" height="168" rx="12" fill="#FFB000"/>
+<rect x="216" y="84" width="24" height="108" rx="12" fill="#3D3D3D"/>
+<rect x="24" y="192" width="216" height="24" rx="12" fill="#FFFFFF"/>
+</g>
+<path transform="translate(163.68,179.52) scale(0.17006,-0.17006)" d="M475 645H365V0H255V645H145V755H475Z" fill="#FFFFFF"/>
+<path transform="translate(271.16,179.52) scale(0.17006,-0.17006)" d="M530 700V350H531L881 0H769L474 295H200V0H90V700H145V755H475V700ZM200 405H420V645H200ZM419 350 474 295H475V350Z" fill="#FFFFFF"/>
+<path transform="translate(438.15,179.52) scale(0.17006,-0.17006)" d="M-5 145H-4L-149 0H-261L439 700H551L1251 0H1139L994 145H-4L106 255H-5ZM995 255H884L495 644L106 255H884L994 145H995Z" fill="#FFFFFF"/>
+<path transform="translate(727.59,179.52) scale(0.17006,-0.17006)" d="M475 55V-55H145V0H90V700H145V755H475V645H200V55Z" fill="#FFFFFF"/>
+<path transform="translate(835.07,179.52) scale(0.17006,-0.17006)" d="M475 645H365V0H255V645H145V755H475Z" fill="#FFFFFF"/>
+<path transform="translate(942.54,179.52) scale(0.17006,-0.17006)" d="M530 0H475V-55H145V0H90V700H200V55H420V700H530Z" fill="#FFFFFF"/>
+<path transform="translate(1050.02,179.52) scale(0.17006,-0.17006)" d="M90 700V699L200 589V0H90V699L89 700ZM790 0V589L900 699V700H901L900 699V0ZM439 350 200 589V700H201L495 406L789 700H790V589L551 350Z" fill="#FFFFFF"/>
+<path transform="translate(1220.42,179.52) scale(0.17006,-0.17006)" d="M200 0H90V110H200Z" fill="#FFB000"/>
+</svg>
