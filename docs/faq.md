@@ -91,7 +91,7 @@ The SDK is MIT-licensed and will stay MIT. No BSL rug, no SSPL switch, no Open C
 
 ## Is there a hosted/managed version?
 
-**Not yet.** Multi-tenancy, billing, Stripe, template marketplace are explicitly **deferred** until paying demand appears (the "Curtis lesson" — don't build before there's demand). See [DEPRECATION.md](https://github.com/JordanNewell/tractum/blob/main/docs/DEPRECATION.md) for the rationale.
+**Not yet.** Multi-tenancy, billing, Stripe, template marketplace are explicitly **deferred** until paying demand appears (the "Curtis lesson" — don't build before there's demand). See [DEPRECATION.md](https://github.com/leverframe/tractum/blob/main/docs/DEPRECATION.md) for the rationale.
 
 A single-tenant runner (FastAPI + SQLite + dashboard, `docker compose up`) is on the roadmap.
 
@@ -109,7 +109,7 @@ Currently 164 tests passing, 97% on critical-path modules (`signing`, `transport
 
 ```
 Tractum — Verifiable multi-agent consensus for Claude.
-Jordan Newell, 2026-. https://github.com/JordanNewell/tractum
+Jordan Newell, 2026-. https://github.com/leverframe/tractum
 ```
 
 Or just link to the repo or the docs.

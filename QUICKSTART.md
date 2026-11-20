@@ -82,7 +82,7 @@ The exposed tools:
 ## 6. Try the examples
 
 ```bash
-git clone https://github.com/JordanNewell/tractum
+git clone https://github.com/leverframe/tractum
 cd tractum
 
 python examples/quickstart.py        # 15-line minimal swarm
