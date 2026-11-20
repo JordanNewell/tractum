@@ -4,7 +4,7 @@ contact_links:
     url: https://github.com/JordanNewell/tractum/blob/main/SECURITY.md
     about: Found a security issue? Follow the private reporting process in SECURITY.md.
   - name: Docs site
-    url: https://jordannewell.github.io/tractum/
+    url: https://tractum.dev/
     about: API reference, transports, adapters, and benchmarks.
   - name: Questions / discussions
     url: https://github.com/JordanNewell/tractum/discussions
