@@ -1,6 +1,6 @@
 site_name: Tractum
 site_description: Verifiable multi-agent consensus for Claude. A coordination layer built around signed agreement.
-site_url: https://jordannewell.github.io/tractum/
+site_url: https://leverframe.github.io/tractum/
 repo_url: https://github.com/JordanNewell/tractum
 repo_name: JordanNewell/tractum
 edit_uri: edit/main/docs/
